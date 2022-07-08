@@ -27,8 +27,6 @@ public class DataAnalyzerMain {
     FootballLeague league = new FootballLeague();
     league.loadFromFile(footballDataFile);
     logger.info("Ennek a csapatnak volt a legkisebb a gólkülönbsége: " + league.getTeamNameWithSmallestGoalDifference());
-    
-    
   }
 
 }

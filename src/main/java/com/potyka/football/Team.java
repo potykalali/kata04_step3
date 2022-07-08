@@ -49,10 +49,6 @@ public class Team implements BaseObject<Team, String> {
     return this.name;
   }
   
-  public int getGoalDifference() {
-    return Math.abs(scoredFor - scoredAgainst);
-  }
-
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -92,6 +88,10 @@ public class Team implements BaseObject<Team, String> {
   @Override
   public int compareTo(Team otherTeam) {
     return this.getGoalDifference() - otherTeam.getGoalDifference();
+  }
+
+  private int getGoalDifference() {
+    return Math.abs(scoredFor - scoredAgainst);
   }
 
 }

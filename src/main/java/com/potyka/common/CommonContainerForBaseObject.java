@@ -14,23 +14,23 @@ import org.apache.log4j.Logger;
 /**
  * Az osztály célja az adatfájl beolvasása egy "alaposztály" listába és elemzése.
  * */
-public abstract class CommonContainerForBaseObject<T> {
+public abstract class CommonContainerForBaseObject<T extends BaseObject, G> {
   
   private static final Logger logger = Logger.getLogger(CommonContainerForBaseObject.class);
 
-  private List<BaseObject> baseObjects = new ArrayList<>();
+  private List<T> baseObjects = new ArrayList<>();
   
   // weather esetében DayId, football esetében name
-  protected T getDataInDemand() {
+  protected G getDataInDemand() {
     Collections.sort(baseObjects);
-    return (T) baseObjects.get(0).getIdentifier();
+    return (G) baseObjects.get(0).getIdentifier();
   }
   
   public void loadFromFile(File dataFile) {
     try {
       for (String oneLine : Files.readAllLines(dataFile.toPath(), StandardCharsets.UTF_8)) {
         if (lineIsDataRecord(oneLine)) {
-          BaseObject bd = createInstanceOfBaseObject();
+          T bd = createInstanceOfBaseObject();
           bd.parse(oneLine);
           this.baseObjects.add(bd);
         }
@@ -40,9 +40,9 @@ public abstract class CommonContainerForBaseObject<T> {
     }
   }
   
-  protected abstract BaseObject createInstanceOfBaseObject();
+  protected abstract T createInstanceOfBaseObject();
   
-  protected List<BaseObject> getBaseObjects(){
+  protected List<T> getBaseObjects(){
     return this.baseObjects;
   }
 

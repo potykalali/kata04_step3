@@ -1,19 +1,18 @@
 package com.potyka.weather;
 
-import com.potyka.common.BaseObject;
 import com.potyka.common.CommonContainerForBaseObject;
 
 /**
  * Az <Integer> arra utal, hogy egész típus lesz a keresett adat: a legkisebb hőmérsékletkülönbségű nap sorszáma
  * */
-public class MonthlyWeather extends CommonContainerForBaseObject<Integer> {
+public class MonthlyWeather extends CommonContainerForBaseObject<DailyWeather, Integer> {
 
   public Integer getDayIdWithSmallestTempretureSpread() {
     return super.getDataInDemand();
   }
   
   @Override
-  protected BaseObject createInstanceOfBaseObject() {
+  protected DailyWeather createInstanceOfBaseObject() {
     return new DailyWeather();
   }
 

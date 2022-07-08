@@ -52,10 +52,6 @@ public class DailyWeather implements BaseObject<DailyWeather, Integer> {
     return this.dayNumber;
   }
   
-  public int getTemperatureSpread() {
-    return maxTemperature - minTemperature;
-  }
-
   @Override
   public String toString() {
     return "DailyWeather [dayNumber=" + dayNumber + ", maxTemperature=" + maxTemperature + ", minTemperature=" + minTemperature + "]";
@@ -92,6 +88,10 @@ public class DailyWeather implements BaseObject<DailyWeather, Integer> {
   @Override
   public int compareTo(DailyWeather otherDailyWeather) {
     return this.getTemperatureSpread() - otherDailyWeather.getTemperatureSpread();
+  }
+
+  private int getTemperatureSpread() {
+    return maxTemperature - minTemperature;
   }
 
 }
